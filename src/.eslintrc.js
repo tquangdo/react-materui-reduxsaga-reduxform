@@ -24,6 +24,8 @@ module.exports = {
     "react/jsx-filename-extension": 0,
     "react/jsx-one-expression-per-line": 0,
     "linebreak-style": 0,
+    "react/jsx-uses-vars": 2,
+    "no-unused-vars": 2,
   },
   // plugins: ["prettier"],
   env: {

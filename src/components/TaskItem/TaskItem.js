@@ -5,9 +5,9 @@ import taskItemStyles from './TaskItemStyles'
 
 class TaskItem extends Component {
   render() {
-    const { classes, mock, chiso } = this.props
+    const { classes, mock } = this.props
     return (
-      <Card key={chiso}>
+      <Card key={mock.id}>
         <CardContent>
           <Grid container justify="space-between">
             <Grid item md={8}>
@@ -35,7 +35,6 @@ class TaskItem extends Component {
 TaskItem.propTypes = {
   classes: PropTypes.object,
   mock: PropTypes.object,
-  chiso: PropTypes.number,
 }
 
 export default withStyles(taskItemStyles)(TaskItem)

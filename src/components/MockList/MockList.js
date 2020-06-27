@@ -6,9 +6,11 @@ import mocklistStyles from './MockListStyles'
 
 class MockList extends Component {
   render() {
-    const { taskLoc, status, chiso } = this.props
+    const { taskLoc, status } = this.props
     return (
-      <Grid item md={4} xs={12} key={chiso}>
+      <Grid item md={4} xs={12}
+        key={status.value} //trong Grid: CHƯA LÀM (0), ĐANG LÀM (1)...
+      >
         <Box mt={3} mb={3}>
           {/* Hiện header: "SẴN SÀNG", "ĐANG LÀM"... */}
           <u><b><i>{status.label}</i></b></u>
@@ -18,9 +20,8 @@ class MockList extends Component {
             taskLoc.map(mock => {
               return (
                 <TaskItem
-                  key={chiso}
+                  key={mock.id} // trong TaskItem: autoincrement id
                   mock={mock}
-                  chiso={chiso}
                 ></TaskItem>
               )
             })
@@ -33,7 +34,6 @@ class MockList extends Component {
 MockList.propTypes = {
   taskLoc: PropTypes.array,
   status: PropTypes.object,
-  chiso: PropTypes.number,
 }
 
 export default withStyles(mocklistStyles)(MockList)

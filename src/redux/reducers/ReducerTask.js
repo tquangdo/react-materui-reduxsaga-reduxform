@@ -9,18 +9,15 @@ const reducerTask = (state = stateBanDau, action) => {
     switch (action.type) {
         case actTypes.RESET_LIST_TASK:
             return {
-                ...state,
                 dsTask: [],
             }
         case actTypes.FECTH_LIST_OK:
             return {
-                ...state,
                 dsTask: action.payload.data,
             }
         case actTypes.FETCH_LIST_NG:
             hienMsgError(action.payload.err)
             return {
-                ...state,
                 dsTask: [],
             }
         default:

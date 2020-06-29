@@ -1,15 +1,14 @@
-import * as taskAPI from '../../apis/TaskAPI'
 import * as actTypes from '../constants/ActionTypes'
 
-export const fetchListTaskREQ = () => {
-    return dispatch => {
-        dispatch(resetListTask())
-        taskAPI
-            .getList()
-            .then(res => { dispatch(fetchListOK(res.data)) })
-            .catch(err => { dispatch(fetchListNG(err)) })
-    }
-}
+// export const fetchListTaskREQ = () => {
+//     return dispatch => {
+//         dispatch(resetListTask())
+//         taskAPI
+//             .getList()
+//             .then(res => { dispatch(fetchListOK(res.data)) })
+//             .catch(err => { dispatch(fetchListNG(err)) })
+//     }
+// }
 export const resetListTask = () => {
     return {
         type: actTypes.RESET_LIST_TASK

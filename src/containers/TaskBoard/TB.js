@@ -4,12 +4,12 @@ import Button from '@material-ui/core/Button'
 import AddCircle from '@material-ui/icons/AddCircle'
 import PropTypes from 'prop-types'
 import tbStyles from './TBStyles'
-import { STATUS } from '../../constants/Constants'
+import { STATUS } from '../../constants/CommonConstants'
 import MockList from '../../components/MockList/MockList'
 import TaskForm from '../../components/TaskForm/TaskForm'
 import { connect } from 'react-redux'
 import * as taskAction from '../../redux/actions/TaskAction'
-import { bindActionCreators } from 'redux'
+import { bindActionCreators, compose } from 'redux'
 
 class TB extends Component {
   state = {
@@ -17,7 +17,7 @@ class TB extends Component {
   }
   componentDidMount = () => {
     const { actionTask } = this.props
-    actionTask.fetchListTaskREQ()
+    actionTask.resetListTask()
   }
   hienGrid = () => {
     const { reduxprop_dsTask } = this.props
@@ -62,9 +62,12 @@ class TB extends Component {
         <div className={classes.hinhDang}>VueJS</div> */}
         <Button variant="contained"
           color="primary"
+          style={{ marginLeft: 20 }}
+          // trong onClick thì hàm KO cần ()
           onClick={this.hamMoForm}>
           <AddCircle /> Thêm mới
         </Button>
+        {/* KO trong onClick thì hàm cần () */}
         {this.hienGrid()}
         {this.hamRenderForm()}
       </div>
@@ -75,7 +78,7 @@ class TB extends Component {
 TB.propTypes = {
   classes: PropTypes.object,
   actionTask: PropTypes.shape({
-    fetchListTaskREQ: PropTypes.func,
+    resetListTask: PropTypes.func,
   }),
   reduxprop_dsTask: PropTypes.array,
 }
@@ -90,9 +93,10 @@ const mapDispatch2Props = dispatch => {
   }
 }
 
-export default withStyles(tbStyles)(
+export default compose(
+  withStyles(tbStyles),
   connect(
     mapState2Props,
     mapDispatch2Props,
-  )(TB),
-)
+  )
+)(TB)

@@ -1,23 +1,26 @@
-import React, { Component } from 'react'
-import { withStyles, Grid } from '@material-ui/core'
+import { Grid, withStyles } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import AddCircle from '@material-ui/icons/AddCircle'
 import PropTypes from 'prop-types'
-import tbStyles from './TBStyles'
-import { STATUS } from '../../constants/CommonConstants'
-import MockList from '../../components/MockList/MockList'
-import TaskForm from '../../components/TaskForm/TaskForm'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import * as taskAction from '../../redux/actions/TaskAction'
 import { bindActionCreators, compose } from 'redux'
+import MockList from '../../components/MockList/MockList'
+import MucSearch from '../../components/MucSearch/MucSearch'
+import TaskForm from '../TaskForm/TaskForm'
+import { STATUS } from '../../constants/CommonConstants'
+import * as taskAction from '../../redux/actions/TaskAction'
+import * as modalAction from '../../redux/actions/ModalAction'
+import tbStyles from './TBStyles'
 
 class TB extends Component {
-  state = {
-    moForm: false,
-  }
+  // cách khai báo state rút gọn
+  // state = {
+  //   moForm: false,
+  // }
   componentDidMount = () => {
-    const { actionTask } = this.props
-    actionTask.resetListTask()
+    const { taskActionCreators } = this.props
+    taskActionCreators.resetListTask()
   }
   hienGrid = () => {
     const { reduxprop_dsTask } = this.props
@@ -40,26 +43,27 @@ class TB extends Component {
     )
     return xhtml
   }
-  hamRenderForm = () => {
-    let { moForm } = this.state
-    let xhtml = (
-      <TaskForm moForm={moForm}
-        onDong={this.hamDongForm}></TaskForm>
-    )
-    return xhtml
+  hamHandleChange = e => {
+    const { taskActionCreators } = this.props
+    taskActionCreators.searchTask(e.target.value)
+  }
+  hamRenderMucSearch = () => {
+    return <MucSearch hamHandleChange={this.hamHandleChange} />
   }
   hamDongForm = () => {
-    this.setState({ moForm: false })
+    const { modalActionCreators } = this.props
+    modalActionCreators.anModal()
   }
   hamMoForm = () => {
-    this.setState({ moForm: true })
+    const { modalActionCreators } = this.props
+    modalActionCreators.hienModal()
+    modalActionCreators.doiModalTitle('Thêm mới task')
+    modalActionCreators.doiModalND(<TaskForm />)
   }
   render() {
     const { classes } = this.props
     return (
       <div className={classes.taskBoard}>
-        {/* <div className={classes.hinhDang}>ReactJS</div>
-        <div className={classes.hinhDang}>VueJS</div> */}
         <Button variant="contained"
           color="primary"
           style={{ marginLeft: 20 }}
@@ -68,8 +72,8 @@ class TB extends Component {
           <AddCircle /> Thêm mới
         </Button>
         {/* KO trong onClick thì hàm cần () */}
+        {this.hamRenderMucSearch()}
         {this.hienGrid()}
-        {this.hamRenderForm()}
       </div>
     )
   }
@@ -77,8 +81,15 @@ class TB extends Component {
 
 TB.propTypes = {
   classes: PropTypes.object,
-  actionTask: PropTypes.shape({
+  taskActionCreators: PropTypes.shape({
     resetListTask: PropTypes.func,
+    searchTask: PropTypes.func,
+  }),
+  modalActionCreators: PropTypes.shape({
+    hienModal: PropTypes.func,
+    anModal: PropTypes.func,
+    doiModalTitle: PropTypes.func,
+    doiModalND: PropTypes.func,
   }),
   reduxprop_dsTask: PropTypes.array,
 }
@@ -89,7 +100,8 @@ const mapState2Props = state => {
 }
 const mapDispatch2Props = dispatch => {
   return {
-    actionTask: bindActionCreators(taskAction, dispatch)
+    taskActionCreators: bindActionCreators(taskAction, dispatch),
+    modalActionCreators: bindActionCreators(modalAction, dispatch),
   }
 }
 

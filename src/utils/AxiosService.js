@@ -10,6 +10,7 @@ class AxiosService {
     hamSuccess(res) { return res }
     hamError(err) { return Promise.reject(err) }
     get(url) { return this.instance.get(url) }
+    post(url, data) { return this.instance.post(url, data) }
 }
 
 export default new AxiosService()

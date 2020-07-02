@@ -7,7 +7,7 @@ class TaskItem extends Component {
   render() {
     const { classes, mock } = this.props
     return (
-      <Card key={mock.id}>
+      <Card key={mock.id} className={classes.card}>
         <CardContent>
           <Grid container justify="space-between">
             <Grid item md={8}>

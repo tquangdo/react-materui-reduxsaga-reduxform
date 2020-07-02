@@ -8,6 +8,7 @@ import cauhinhStore from '../../redux/StoreReducer'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import GlobalLoad from '../../components/GlobalLoad/GlobalLoad'
+import ModalComp from '../../components/ModalComp/ModalComp'
 
 const store = cauhinhStore()
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
           <ToastContainer />
           <TB />
           <GlobalLoad />
+          <ModalComp />
         </ThemeProvider>
       </Provider>
     )

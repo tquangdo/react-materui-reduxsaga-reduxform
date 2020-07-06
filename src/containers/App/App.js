@@ -9,22 +9,40 @@ import 'react-toastify/dist/ReactToastify.css' //set with ToastContainer
 import GlobalLoad from '../../components/GlobalLoad/GlobalLoad'
 import ModalComp from '../../components/ModalComp/ModalComp'
 import { BrowserRouter, Switch } from 'react-router-dom'
-import { ADMIN_ROUTES } from '../../constants/CommonConstants'
+import { ADMIN_ROUTES, USER_ROUTES } from '../../constants/CommonConstants'
 import QuanTriLayoutRoute from '../../commons/QuanTriLayoutRoute/QuanTriLayoutRoute'
+import UserLayoutRoute from '../../commons/UserLayoutRoute/UserLayoutRoute'
 
 const store = cauhinhStore()
 class App extends Component {
   hamRenderAdRoutes() {
     let xhtml = null
-    xhtml = ADMIN_ROUTES.map((route, chiso) => {
-      return <QuanTriLayoutRoute key={chiso}
-        // phải truyền từng cái, KO được truyền 1 cục route
-        path={route.path}
-        component={route.component}
-        exact={route.exact}
-        name={route.name}
-      />
-    })
+    if (ADMIN_ROUTES) {
+      xhtml = ADMIN_ROUTES.map((route, chiso) => {
+        return <QuanTriLayoutRoute key={chiso}
+          // phải truyền từng cái, KO được truyền 1 cục route
+          path={route.path}
+          component={route.component}
+          exact={route.exact}
+          name={route.name}
+        />
+      })
+    }
+    return xhtml
+  }
+  hamRenderURoutes() {
+    let xhtml = null
+    if (USER_ROUTES) {
+      xhtml = USER_ROUTES.map((route, chiso) => {
+        return <UserLayoutRoute key={chiso}
+          // phải truyền từng cái, KO được truyền 1 cục route
+          path={route.path}
+          component={route.component}
+          exact={route.exact}
+          name={route.name}
+        />
+      })
+    }
     return xhtml
   }
   render() {
@@ -36,6 +54,7 @@ class App extends Component {
             <ToastContainer />
             <Switch>
               {this.hamRenderAdRoutes()}
+              {this.hamRenderURoutes()}
             </Switch>
             <GlobalLoad />
             <ModalComp />

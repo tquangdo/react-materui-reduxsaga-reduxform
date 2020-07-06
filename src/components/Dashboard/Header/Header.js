@@ -12,6 +12,7 @@ import headerStyles from './HeaderStyles'
 import PropTypes from 'prop-types'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
+import { withRouter } from 'react-router-dom'
 
 const menuId = 'primary-search-account-menu'
 
@@ -19,22 +20,24 @@ class Header extends Component {
     state = {
         anchorEl: null,
     }
-
     hamProfileMenuOpen = e => {
         this.setState({
             anchorEl: e.currentTarget,
         })
     }
-
     hamHandleMenuClose = () => {
         this.setState({
             anchorEl: null,
         })
     }
-
+    hamHandleLogout = () => {
+        const { history } = this.props
+        if (history) {
+            history.push('/login')
+        }
+    }
     renderMenu = () => {
         const { anchorEl } = this.state
-        const isMenuOpen = Boolean(anchorEl)
         return (
             <Menu
                 anchorEl={anchorEl}
@@ -42,14 +45,13 @@ class Header extends Component {
                 id={menuId}
                 keepMounted
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                open={isMenuOpen}
+                open={Boolean(anchorEl)}
                 onClose={this.hamHandleMenuClose}
             >
-                <MenuItem onClick={this.hamHandleMenuClose}>Logout</MenuItem>
+                <MenuItem onClick={this.hamHandleLogout}>Logout</MenuItem>
             </Menu>
         )
     }
-
     hamToggleSidebar = () => {
         const { showSB, hamToggleSidebar } = this.props
         hamToggleSidebar(!showSB)
@@ -123,6 +125,7 @@ Header.propTypes = {
     name: PropTypes.string,
     showSB: PropTypes.bool,
     hamToggleSidebar: PropTypes.func,
+    history: PropTypes.object,
 }
 
-export default withStyles(headerStyles)(Header)
+export default withStyles(headerStyles)(withRouter(Header))

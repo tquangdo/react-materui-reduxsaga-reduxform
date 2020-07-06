@@ -1,5 +1,7 @@
 import TaskBoard from '../containers/TaskBoard/TaskBoard'
-import QuanTri from '../containers/QuanTri/QuanTri'
+import QuanTriPage from '../containers/QuanTriPage/QuanTriPage'
+import DangnhapPage from '../containers/DangnhapPage/DangnhapPage'
+import DangkiPage from '../containers/DangkiPage/DangkiPage'
 
 export const STATUS = [
     {
@@ -23,14 +25,28 @@ export const DELAY_MS = 1000
 
 export const ADMIN_ROUTES = [
     {
-        path: '/',
+        path: '/admin',
         name: 'Trang quản trị',
         exact: true,
-        component: QuanTri,
+        component: QuanTriPage,
     },
     {
-        path: '/task-board',
+        path: '/admin/task-board',
         name: 'Quản lí task',
         component: TaskBoard,
     },
 ]
+
+export const USER_ROUTES = [
+    {
+        path: '/login',
+        name: 'Đăng nhập',
+        component: DangnhapPage,
+    },
+    {
+        path: '/signup',
+        name: 'Đăng kí',
+        component: DangkiPage,
+    },
+]
+

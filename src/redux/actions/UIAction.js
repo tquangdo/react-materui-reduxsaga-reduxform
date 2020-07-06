@@ -10,3 +10,13 @@ export const hideGlobalLoad = () => {
         type: actTypes.HIDE_GLOBAL_LOAD,
     }
 }
+export const hienSidebar = () => {
+    return {
+        type: actTypes.HIEN_SIDE_BAR,
+    }
+}
+export const anSidebar = () => {
+    return {
+        type: actTypes.AN_SIDE_BAR,
+    }
+}

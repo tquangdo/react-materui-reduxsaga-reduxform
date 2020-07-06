@@ -1,4 +1,5 @@
 import * as actTypes from '../constants/ActionTypes'
+import { STATUS } from '../../constants/CommonConstants'
 
 // export const fetchListTaskREQ = () => {
 //     return dispatch => {
@@ -9,9 +10,10 @@ import * as actTypes from '../constants/ActionTypes'
 //             .catch(err => { dispatch(fetchListNG(err)) })
 //     }
 // }
-export const resetListTask = () => {
+export const resetListTask = (params = {}) => {
     return {
         type: actTypes.RESET_LIST_TASK,
+        payload: { params, }
     }
 }
 export const fetchListOK = data => {
@@ -50,9 +52,46 @@ export const searchTask = kw => {
         payload: { kw, },
     }
 }
-export const searchTaskOK = data => {
+export const editTask = arg_mock => {
     return {
-        type: actTypes.SEARCH_OK,
+        type: actTypes.EDIT_TASK,
+        payload: { arg_mock, },
+    }
+}
+export const suaTask = (title, description, type, status = STATUS[0].value) => {
+    return {
+        type: actTypes.SUA_TASK,
+        payload: { title, description, type, status },
+    }
+}
+export const suaTaskOK = data => {
+    return {
+        type: actTypes.SUA_TASK_OK,
         payload: { data },
     }
 }
+export const suaTaskNG = err => {
+    return {
+        type: actTypes.SUA_TASK_NG,
+        payload: { err },
+    }
+}
+export const xoaTask = arg_id => {
+    return {
+        type: actTypes.XOA_TASK,
+        payload: { arg_id },
+    }
+}
+export const xoaTaskOK = arg_id => {
+    return {
+        type: actTypes.XOA_TASK_OK,
+        payload: { arg_id },
+    }
+}
+export const xoaTaskNG = err => {
+    return {
+        type: actTypes.XOA_TASK_NG,
+        payload: { err },
+    }
+}
+

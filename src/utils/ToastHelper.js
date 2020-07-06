@@ -9,3 +9,9 @@ export const hienMsgError = err => {
         toast.error(message)
     }
 }
+
+export const hienMsg = msg => {
+    if (msg !== null && msg !== '' && typeof msg !== 'undefined') {
+        toast.success(msg)
+    }
+}

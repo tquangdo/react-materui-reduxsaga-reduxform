@@ -1,6 +1,5 @@
-const tbStyles = xxx => ({
-    taskBoard: {
-    },
+const tbStyles = () => ({
+    // const tbStyles = xxx => ({
     // hinhDang: {
     //     padding: 20,
     //     margin: 10,

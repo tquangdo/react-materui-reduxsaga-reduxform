@@ -5,7 +5,7 @@ import taskItemStyles from './TaskItemStyles'
 
 class TaskItem extends Component {
   render() {
-    const { classes, mock } = this.props
+    const { classes, mock, hamOnEdit, hamOnDelete } = this.props
     return (
       <Card key={mock.id} className={classes.card}>
         <CardContent>
@@ -21,10 +21,14 @@ class TaskItem extends Component {
           <p>{mock.description} </p>
         </CardContent>
         <CardActions className={classes.cardActions}>
-          <Fab color="primary" aria-label="Edit" size="small">
+          <Fab color="primary" aria-label="Edit" size="small"
+            onClick={hamOnEdit}
+          >
             <Icon fontSize="small">edit_icon</Icon>
           </Fab>
-          <Fab color="primary" aria-label="Delete" size="small">
+          <Fab color="primary" aria-label="Delete" size="small"
+            onClick={hamOnDelete}
+          >
             <Icon fontSize="small">delete_icon</Icon>
           </Fab>
         </CardActions>
@@ -35,6 +39,8 @@ class TaskItem extends Component {
 TaskItem.propTypes = {
   classes: PropTypes.object,
   mock: PropTypes.object,
+  hamOnEdit: PropTypes.func,
+  hamOnDelete: PropTypes.func,
 }
 
 export default withStyles(taskItemStyles)(TaskItem)

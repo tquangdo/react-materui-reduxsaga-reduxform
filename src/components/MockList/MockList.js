@@ -6,7 +6,7 @@ import mocklistStyles from './MockListStyles'
 
 class MockList extends Component {
   render() {
-    const { taskLoc, status } = this.props
+    const { taskLoc, status, hamOnEdit, hamOnDelete } = this.props
     return (
       <Grid item md={4} xs={12}
         key={status.value} //trong Grid: CHƯA LÀM (0), ĐANG LÀM (1)...
@@ -22,6 +22,8 @@ class MockList extends Component {
                 <TaskItem
                   key={mock.id} // trong TaskItem: autoincrement id
                   mock={mock}
+                  hamOnEdit={() => hamOnEdit(mock)}
+                  hamOnDelete={() => hamOnDelete(mock)}
                 ></TaskItem>
               )
             })
@@ -34,6 +36,8 @@ class MockList extends Component {
 MockList.propTypes = {
   taskLoc: PropTypes.array,
   status: PropTypes.object,
+  hamOnEdit: PropTypes.func,
+  hamOnDelete: PropTypes.func,
 }
 
 export default withStyles(mocklistStyles)(MockList)

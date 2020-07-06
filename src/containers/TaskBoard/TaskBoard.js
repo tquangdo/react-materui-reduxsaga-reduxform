@@ -1,4 +1,4 @@
-import { Grid, withStyles } from '@material-ui/core'
+import { Grid, withStyles, Box } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
 import AddCircle from '@material-ui/icons/AddCircle'
 import PropTypes from 'prop-types'
@@ -11,9 +11,9 @@ import TaskForm from '../TaskForm/TaskForm'
 import { STATUS } from '../../constants/CommonConstants'
 import * as taskAction from '../../redux/actions/TaskAction'
 import * as modalAction from '../../redux/actions/ModalAction'
-import tbStyles from './TBStyles'
+import tbStyles from './TaskBoardStyles'
 
-class TB extends Component {
+class TaskBoard extends Component {
   // cách khai báo state rút gọn
   // state = {
   //   moForm: false,
@@ -21,6 +21,44 @@ class TB extends Component {
   componentDidMount = () => {
     const { taskActionCreators } = this.props
     taskActionCreators.resetListTask()
+  }
+  hamOnEdit = arg_mock => {
+    const { taskActionCreators, modalActionCreators } = this.props
+    const { editTask } = taskActionCreators
+    editTask(arg_mock)
+    const { hienModal, doiModalTitle, doiModalND } = modalActionCreators
+    hienModal()
+    doiModalTitle('Chỉnh sửa task')
+    doiModalND(<TaskForm />)
+  }
+  hamHandleDelete = arg_mock => {
+    const { taskActionCreators } = this.props
+    taskActionCreators.xoaTask(arg_mock.id)
+  }
+  hamOnDelete = arg_mock => {
+    const { modalActionCreators } = this.props
+    const { hienModal, doiModalTitle, doiModalND, anModal } = modalActionCreators
+    hienModal()
+    doiModalTitle('Xóa task')
+    doiModalND(
+      <div>
+        <h3>
+          Bạn có chắc chắn muốn xóa task:{' '}
+          <i>{arg_mock.title}</i>?
+        </h3>
+        <Box display="flex" flexDirection="row-reverse" mt={2}>
+          <Box ml={1} mb={1} mr={1}>
+            <Button variant="contained" onClick={anModal}>Hủy</Button>
+          </Box>
+          <Box>
+            <Button variant="contained"
+              color="primary"
+              onClick={() => this.hamHandleDelete(arg_mock)}
+            >Xóa</Button>
+          </Box>
+        </Box>
+      </div>
+    )
   }
   hienGrid = () => {
     const { reduxprop_dsTask } = this.props
@@ -35,6 +73,8 @@ class TB extends Component {
                 key={status.value} //trong Grid: CHƯA LÀM (0), ĐANG LÀM (1)...
                 taskLoc={taskLoc}
                 status={status}
+                hamOnEdit={this.hamOnEdit}
+                hamOnDelete={this.hamOnDelete}
               ></MockList>
             )
           })
@@ -43,22 +83,25 @@ class TB extends Component {
     )
     return xhtml
   }
-  hamHandleChange = e => {
+  hamHandleSearch = e => {
     const { taskActionCreators } = this.props
     taskActionCreators.searchTask(e.target.value)
   }
   hamRenderMucSearch = () => {
-    return <MucSearch hamHandleChange={this.hamHandleChange} />
+    return <MucSearch hamHandleSearch={this.hamHandleSearch} />
   }
   hamDongForm = () => {
     const { modalActionCreators } = this.props
     modalActionCreators.anModal()
   }
   hamMoForm = () => {
-    const { modalActionCreators } = this.props
-    modalActionCreators.hienModal()
-    modalActionCreators.doiModalTitle('Thêm mới task')
-    modalActionCreators.doiModalND(<TaskForm />)
+    const { modalActionCreators, taskActionCreators } = this.props
+    const { editTask } = taskActionCreators
+    editTask(null)
+    const { hienModal, doiModalTitle, doiModalND } = modalActionCreators
+    hienModal()
+    doiModalTitle('Thêm mới task')
+    doiModalND(<TaskForm />)
   }
   render() {
     const { classes } = this.props
@@ -79,11 +122,13 @@ class TB extends Component {
   }
 }
 
-TB.propTypes = {
+TaskBoard.propTypes = {
   classes: PropTypes.object,
   taskActionCreators: PropTypes.shape({
     resetListTask: PropTypes.func,
     searchTask: PropTypes.func,
+    editTask: PropTypes.func,
+    xoaTask: PropTypes.func,
   }),
   modalActionCreators: PropTypes.shape({
     hienModal: PropTypes.func,
@@ -111,4 +156,4 @@ export default compose(
     mapState2Props,
     mapDispatch2Props,
   )
-)(TB)
+)(TaskBoard)

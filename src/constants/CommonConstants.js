@@ -39,8 +39,9 @@ export const ADMIN_ROUTES = [
 
 export const USER_ROUTES = [
     {
-        path: '/login',
+        path: '/',
         name: 'Đăng nhập',
+        exact: true,
         component: DangnhapPage,
     },
     {

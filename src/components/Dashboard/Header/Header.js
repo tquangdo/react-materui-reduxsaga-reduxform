@@ -33,7 +33,7 @@ class Header extends Component {
     hamHandleLogout = () => {
         const { history } = this.props
         if (history) {
-            history.push('/login')
+            history.push('/')
         }
     }
     renderMenu = () => {

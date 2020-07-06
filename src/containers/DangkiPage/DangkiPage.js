@@ -29,7 +29,7 @@ class DangkiPage extends Component {
                   Đăng kí
                 </Button>
                 <div>
-                  <Link to='/login' >
+                  <Link to='/' >
                     <Button>Đăng nhập</Button>
                   </Link>
                 </div>

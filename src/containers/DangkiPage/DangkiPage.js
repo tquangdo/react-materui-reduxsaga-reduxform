@@ -13,6 +13,7 @@ import * as authAction from '../../redux/actions/AuthAction'
 import { FORM_DANG_KI } from '../../redux/constants/ConfigConst'
 import validate from '../TaskForm/Validate'
 import dkPageStyles from './DangkiPageStyles'
+import { REDIRECT_AFTER_DANGKI } from '../../constants/CommonConstants'
 
 class DangkiPage extends Component {
   hamSubmitForm = data => {
@@ -65,7 +66,7 @@ class DangkiPage extends Component {
                   Đăng kí
                 </Button>
                 <div>
-                  <Link to='/' >
+                  <Link to={REDIRECT_AFTER_DANGKI} >
                     <Button>Đăng nhập</Button>
                   </Link>
                 </div>

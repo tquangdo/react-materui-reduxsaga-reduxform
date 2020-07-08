@@ -24,7 +24,7 @@ export const STATUS_CODE = {
 }
 export const TOKEN = 'TOKEN'
 export const DELAY_MS = 1000
-export const REDIRECT_AFTER_DANGKI = '/';
+export const REDIRECT_AFTER_DANGKI = '/reduxsaga-materui-reduxform';
 export const REDIRECT_AFTER_DANGNHAP_ADMIN = '/admin';
 export const REDIRECT_AFTER_DANGNHAP_USER = '/home';
 

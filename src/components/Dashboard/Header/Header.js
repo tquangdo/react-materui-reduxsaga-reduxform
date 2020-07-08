@@ -13,7 +13,7 @@ import PropTypes from 'prop-types'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import { withRouter } from 'react-router-dom'
-import { TOKEN } from '../../../constants/CommonConstants'
+import { TOKEN, REDIRECT_AFTER_DANGKI } from '../../../constants/CommonConstants'
 
 const menuId = 'primary-search-account-menu'
 
@@ -35,7 +35,7 @@ class Header extends Component {
         localStorage.removeItem(TOKEN)
         const { history } = this.props
         if (history) {
-            history.push('/')
+            history.push(REDIRECT_AFTER_DANGKI)
         }
     }
     renderMenu = () => {

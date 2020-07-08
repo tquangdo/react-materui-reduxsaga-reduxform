@@ -1,24 +1,28 @@
-import { createStore, compose, applyMiddleware } from 'redux'
-import myReducer from './reducers/Reducer'
-import thunk from 'redux-thunk'
+import { routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
+import { applyMiddleware, compose, createStore } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import hamRootSaga from '../sagas'
+import thunk from 'redux-thunk'
+import hamRootSaga from '../sagas/RootSaga'
+import myReducer from './reducers/Reducer'
 
+const sagaMW = createSagaMiddleware()
 const composeEnhancers = process.env.NODE_ENV !== 'production' && typeof window === 'object' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         shouldHotReload: false,
     }) : compose
 
-const sagaMW = createSagaMiddleware()
+export const history = createBrowserHistory()
+
 const cauhinhStore = () => {
-    const mWares = [thunk, sagaMW]
+    const mWares = [thunk, sagaMW, routerMiddleware(history)]
     const enhancers = [applyMiddleware(...mWares)]
-    const store = createStore(myReducer, composeEnhancers(...enhancers))
+    const store = createStore(
+        myReducer(history),
+        composeEnhancers(...enhancers)
+    )
     sagaMW.run(hamRootSaga)
     return store
 }
-// storeReducer.subscribe(() => {
-//     console.log(storeReducer.getState())
-// })
-// npm install gh-pages --save-dev
+
 export default cauhinhStore

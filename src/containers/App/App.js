@@ -1,17 +1,18 @@
+import { CssBaseline, ThemeProvider, withStyles } from '@material-ui/core'
+import { ConnectedRouter } from 'connected-react-router'
 import React, { Component } from 'react'
-import { withStyles, ThemeProvider, CssBaseline } from '@material-ui/core'
-import appStyles from './AppStyles'
-import themeCSS from '../../commons/Theme/ThemeCSS'
 import { Provider } from 'react-redux'
-import cauhinhStore from '../../redux/StoreReducer'
+import { Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css' //set with ToastContainer
+import QuanTriLayoutRoute from '../../commons/QuanTriLayoutRoute/QuanTriLayoutRoute'
+import themeCSS from '../../commons/Theme/ThemeCSS'
+import UserLayoutRoute from '../../commons/UserLayoutRoute/UserLayoutRoute'
 import GlobalLoad from '../../components/GlobalLoad/GlobalLoad'
 import ModalComp from '../../components/ModalComp/ModalComp'
-import { BrowserRouter, Switch } from 'react-router-dom'
 import { ADMIN_ROUTES, USER_ROUTES } from '../../constants/CommonConstants'
-import QuanTriLayoutRoute from '../../commons/QuanTriLayoutRoute/QuanTriLayoutRoute'
-import UserLayoutRoute from '../../commons/UserLayoutRoute/UserLayoutRoute'
+import cauhinhStore, { history } from '../../redux/StoreReducer'
+import appStyles from './AppStyles'
 
 const store = cauhinhStore()
 class App extends Component {
@@ -48,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
           <ThemeProvider theme={themeCSS}>
             <CssBaseline />
             <ToastContainer />
@@ -59,7 +60,7 @@ class App extends Component {
             <GlobalLoad />
             <ModalComp />
           </ThemeProvider>
-        </BrowserRouter>
+        </ConnectedRouter>
       </Provider>
     )
   }

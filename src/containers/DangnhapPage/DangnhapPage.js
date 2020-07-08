@@ -1,26 +1,49 @@
-import { withStyles, Card, CardContent, Typography, TextField, Button } from '@material-ui/core'
+import { withStyles, Card, CardContent, Typography, Button } from '@material-ui/core'
 import React, { Component } from 'react'
 import dnPageStyles from './DangnhapPageStyles'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { Field, reduxForm } from 'redux-form'
+import { reduxFTextField } from '../../components/ReduxForm/ReduxF'
+import { LOGIN } from '../../redux/constants/ConfigConst'
+import validate from '../TaskForm/Validate'
+import * as authAction from '../../redux/actions/AuthAction'
+import { bindActionCreators, compose } from 'redux'
+import { connect } from 'react-redux'
 
 class DangnhapPage extends Component {
+  hamSubmitForm = data => {
+    const { authActionCreators } = this.props
+    const { email, password } = data
+    const { dangnhap } = authActionCreators
+    if (dangnhap) {
+      dangnhap(email, password)
+    }
+  }
   render() {
-    const { classes } = this.props
+    const { classes, invalid, submitting, handleSubmit, } = this.props
     return (
       <div className={classes.bckG}>
         <div>
           <Card>
             <CardContent>
-              <form>
+              <form onSubmit={handleSubmit(this.hamSubmitForm)}>
                 <div>
                   <Typography variant='caption'>Đăng nhập</Typography>
                 </div>
-                <TextField label='Email'
-                  fullWidth margin='normal' className={classes.textField} />
-                <TextField label='Password' type='password'
-                  fullWidth margin='normal' className={classes.textField} />
-                <Button variant='contained' color='primary' fullWidth type='submit' >
+                <Field label='Email'
+                  fullWidth margin='normal' className={classes.textField}
+                  name="email"
+                  component={reduxFTextField}
+                />
+                <Field label='Password' type='password'
+                  fullWidth margin='normal' className={classes.textField}
+                  name="password"
+                  component={reduxFTextField}
+                />
+                <Button
+                  disabled={invalid || submitting}
+                  variant='contained' color='primary' fullWidth type='submit' >
                   Đăng nhập
                 </Button>
                 <div>
@@ -39,6 +62,26 @@ class DangnhapPage extends Component {
 
 DangnhapPage.propTypes = {
   classes: PropTypes.object,
+  invalid: PropTypes.bool,
+  submitting: PropTypes.bool,
+  handleSubmit: PropTypes.func,
+  authActionCreators: PropTypes.shape({
+    dangnhap: PropTypes.func,
+  }),
 }
+const withReduxForm = reduxForm({
+  form: LOGIN,
+  validate,
+})
+const mapDispatchToProps = dispatch => ({
+  authActionCreators: bindActionCreators(authAction, dispatch)
+})
 
-export default withStyles(dnPageStyles)(DangnhapPage)
+export default compose(
+  withStyles(dnPageStyles),
+  connect(
+    null,
+    mapDispatchToProps
+  ),
+  withReduxForm,
+)(DangnhapPage) 

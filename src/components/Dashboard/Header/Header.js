@@ -13,6 +13,7 @@ import PropTypes from 'prop-types'
 import MailIcon from '@material-ui/icons/Mail'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import { withRouter } from 'react-router-dom'
+import { TOKEN } from '../../../constants/CommonConstants'
 
 const menuId = 'primary-search-account-menu'
 
@@ -31,6 +32,7 @@ class Header extends Component {
         })
     }
     hamHandleLogout = () => {
+        localStorage.removeItem(TOKEN)
         const { history } = this.props
         if (history) {
             history.push('/')

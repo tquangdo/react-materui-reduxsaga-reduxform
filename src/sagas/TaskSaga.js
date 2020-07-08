@@ -2,7 +2,10 @@ import { fork, take, call, put, delay, takeLatest, takeEvery, select } from 'red
 import * as actTypes from '../redux/constants/ActionTypes'
 import { getListAPI, themTaskAPI, suaTaskAPI, xoaTaskAPI } from '../apis/TaskAPI'
 import { STATUS_CODE, DELAY_MS, STATUS } from '../constants/CommonConstants'
-import { resetListTask, fetchListOK, fetchListNG, themTaskOK, themTaskNG, suaTaskOK, suaTaskNG, xoaTaskOK, xoaTaskNG } from '../redux/actions/TaskAction'
+import {
+    resetListTask, fetchListOK, fetchListNG, themTaskOK, themTaskNG,
+    suaTaskOK, suaTaskNG, xoaTaskOK, xoaTaskNG
+} from '../redux/actions/TaskAction'
 import { showGlobalLoad, hideGlobalLoad } from '../redux/actions/UIAction'
 import { anModal } from '../redux/actions/ModalAction'
 
@@ -95,7 +98,7 @@ function* hamSagaXoaTask({ payload }) {
     yield delay(DELAY_MS / 3)
     yield put(hideGlobalLoad())
 }
-function* hamRootSaga() {
+function* hamTaskSaga() {
     yield fork(hamSagaFetchList) //fork: chia 2 nhánh chạy song song async (non-blocking, còn lại hầu hết là blocking)
     /**
      * B5: run next action...
@@ -107,4 +110,4 @@ function* hamRootSaga() {
     yield takeEvery(actTypes.XOA_TASK, hamSagaXoaTask)
 }
 
-export default hamRootSaga
+export default hamTaskSaga

@@ -1,2 +1,5 @@
-export const API_URL = 'https://5edc676811cb1d001665ce13.mockapi.io/dotq/congviecs'
+export const API_URL_GOC = 'https://5edc676811cb1d001665ce13.mockapi.io/dotq/'
+export const API_URL = API_URL_GOC + 'congviecs'
+export const API_TOKEN = API_URL_GOC + 'tokens'
 export const TASK_MANAGE = 'TASK_MANAGE'
+export const LOGIN = 'LOGIN'

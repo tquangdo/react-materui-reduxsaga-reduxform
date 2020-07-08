@@ -21,11 +21,14 @@ export const STATUS_CODE = {
     SUCCESS: 200,
     CREATED: 201,
 }
+export const TOKEN = 'TOKEN'
 export const DELAY_MS = 1000
+export const REDIRECT_AFTER_DANGKI = '/';
+export const REDIRECT_AFTER_DANGNHAP = '/admin';
 
 export const ADMIN_ROUTES = [
     {
-        path: '/admin',
+        path: REDIRECT_AFTER_DANGNHAP,
         name: 'Trang quản trị',
         exact: true,
         component: QuanTriPage,
@@ -39,7 +42,7 @@ export const ADMIN_ROUTES = [
 
 export const USER_ROUTES = [
     {
-        path: '/',
+        path: REDIRECT_AFTER_DANGKI,
         name: 'Đăng nhập',
         exact: true,
         component: DangnhapPage,

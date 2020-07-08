@@ -26,4 +26,13 @@ export var AN_MODAL = 'AN_MODAL'
 export var DOI_MODAL_TITLE = 'DOI_MODAL_TITLE'
 export var DOI_MODAL_NOIDUNG = 'DOI_MODAL_NOIDUNG'
 
+// reducerAuth
+export const DANGKI = 'DANGKI';
+export const DANGKI_OK = 'DANGKI_OK';
+export const DANGKI_NG = 'DANGKI_NG';
+export const DANGNHAP = 'DANGNHAP';
+export const DANGNHAP_OK = 'DANGNHAP_OK';
+export const DANGNHAP_NG = 'DANGNHAP_NG';
+
+
 

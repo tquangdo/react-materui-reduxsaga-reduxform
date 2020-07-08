@@ -48,7 +48,7 @@ class TaskForm extends Component {
   // minLength2 = this.minLength(2)
   render() {
     const { classes, modalActionCreators, handleSubmit,
-      invalid, submitting
+      invalid, submitting,
     } = this.props
     const { anModal } = modalActionCreators
     return (
@@ -176,5 +176,5 @@ export default compose(
     mapState2Props,
     mapDispatch2Props,
   ),
-  withReduxForm
+  withReduxForm,
 )(TaskForm)

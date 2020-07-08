@@ -1,15 +1,15 @@
-import { withStyles, Card, CardContent, Typography, Button } from '@material-ui/core'
-import React, { Component } from 'react'
-import dnPageStyles from './DangnhapPageStyles'
-import { Link } from 'react-router-dom'
+import { Button, Card, CardContent, Typography, withStyles } from '@material-ui/core'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { bindActionCreators, compose } from 'redux'
 import { Field, reduxForm } from 'redux-form'
 import { reduxFTextField } from '../../components/ReduxForm/ReduxF'
+import * as authAction from '../../redux/actions/AuthAction'
 import { LOGIN } from '../../redux/constants/ConfigConst'
 import validate from '../TaskForm/Validate'
-import * as authAction from '../../redux/actions/AuthAction'
-import { bindActionCreators, compose } from 'redux'
-import { connect } from 'react-redux'
+import dnPageStyles from './DangnhapPageStyles'
 
 class DangnhapPage extends Component {
   hamSubmitForm = data => {

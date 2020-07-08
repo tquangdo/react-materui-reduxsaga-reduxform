@@ -15,7 +15,7 @@ const reducerAuth = (state = {}, action) => {
                 ...state,
             }
         case actTypes.DANGNHAP_OK:
-            hienMsg('Đăng nhập thành công')
+            hienMsg('Đăng nhập ' + action.msg + ' thành công')
             return {
                 ...state,
             }

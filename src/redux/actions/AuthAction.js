@@ -1,10 +1,9 @@
 import * as actTypes from '../constants/ActionTypes'
 
-export const dangki = (email, pw) => ({
+export const dangki = (fullname, email, pw) => ({
     type: actTypes.DANGKI,
     payload: {
-        email,
-        pw
+        fullname, email, pw
     }
 });
 
@@ -25,16 +24,16 @@ export const dangkiNG = err => ({
 export const dangnhap = (email, pw) => ({
     type: actTypes.DANGNHAP,
     payload: {
-        email,
-        pw,
+        email, pw
     }
 });
 
-export const dangnhapOK = data => ({
+export const dangnhapOK = (data, msg) => ({
     type: actTypes.DANGNHAP_OK,
     payload: {
         data
-    }
+    },
+    msg: msg,
 });
 
 export const dangnhapNG = err => ({

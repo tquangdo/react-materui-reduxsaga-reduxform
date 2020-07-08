@@ -2,6 +2,7 @@ import TaskBoard from '../containers/TaskBoard/TaskBoard'
 import QuanTriPage from '../containers/QuanTriPage/QuanTriPage'
 import DangnhapPage from '../containers/DangnhapPage/DangnhapPage'
 import DangkiPage from '../containers/DangkiPage/DangkiPage'
+import HomePage from '../containers/HomePage/HomePage'
 
 export const STATUS = [
     {
@@ -24,11 +25,12 @@ export const STATUS_CODE = {
 export const TOKEN = 'TOKEN'
 export const DELAY_MS = 1000
 export const REDIRECT_AFTER_DANGKI = '/';
-export const REDIRECT_AFTER_DANGNHAP = '/admin';
+export const REDIRECT_AFTER_DANGNHAP_ADMIN = '/admin';
+export const REDIRECT_AFTER_DANGNHAP_USER = '/home';
 
 export const ADMIN_ROUTES = [
     {
-        path: REDIRECT_AFTER_DANGNHAP,
+        path: REDIRECT_AFTER_DANGNHAP_ADMIN,
         name: 'Trang quản trị',
         exact: true,
         component: QuanTriPage,
@@ -51,6 +53,11 @@ export const USER_ROUTES = [
         path: '/signup',
         name: 'Đăng kí',
         component: DangkiPage,
+    },
+    {
+        path: '/home',
+        name: 'Trang chủ',
+        component: HomePage,
     },
 ]
 

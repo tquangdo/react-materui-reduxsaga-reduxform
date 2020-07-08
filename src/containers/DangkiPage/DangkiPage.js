@@ -1,31 +1,67 @@
-import { withStyles, Card, CardContent, Typography, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core'
-import React, { Component } from 'react'
-import dkPageStyles from './DangkiPageStyles'
-import { Link } from 'react-router-dom'
+import {
+  Button, Card,
+  CardContent, Typography, withStyles
+} from '@material-ui/core'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { bindActionCreators, compose } from 'redux'
+import { Field, reduxForm } from 'redux-form'
+import { reduxFCheckbox, reduxFTextField } from '../../components/ReduxForm/ReduxF'
+import * as authAction from '../../redux/actions/AuthAction'
+import { FORM_DANG_KI } from '../../redux/constants/ConfigConst'
+import validate from '../TaskForm/Validate'
+import dkPageStyles from './DangkiPageStyles'
 
 class DangkiPage extends Component {
+  hamSubmitForm = data => {
+    const { authActionCreators } = this.props
+    const { fullname, email, password } = data
+    const { dangki } = authActionCreators
+    if (dangki) {
+      dangki(fullname, email, password)
+    }
+  }
   render() {
-    const { classes } = this.props
+    const { classes, invalid, submitting, handleSubmit, } = this.props
     return (
       <div className={classes.bckG}>
         <div className={classes.signup}>
           <Card>
             <CardContent>
-              <form>
+              <form onSubmit={handleSubmit(this.hamSubmitForm)}>
                 <div>
                   <Typography variant='caption'>Đăng kí tài khoản</Typography>
                 </div>
-                <TextField label='Email'
-                  fullWidth margin='normal' className={classes.textField} />
-                <TextField label='Password' type='password'
-                  fullWidth margin='normal' className={classes.textField} />
-                <TextField label='Confirm Password' type='password'
-                  fullWidth margin='normal' className={classes.textField} />
-                <FormControlLabel control={<Checkbox value='ok' />}
-                  label='Tôi đã đọc chính sách & OK'
+                <Field label='Họ & tên'
+                  fullWidth margin='normal' className={classes.textField}
+                  name="fullname"
+                  component={reduxFTextField}
                 />
-                <Button variant='contained' color='primary' fullWidth type='submit' >
+                <Field label='Email'
+                  fullWidth margin='normal' className={classes.textField}
+                  name="email"
+                  component={reduxFTextField}
+                />
+                <Field label='Password' type='password'
+                  fullWidth margin='normal' className={classes.textField}
+                  name="password"
+                  component={reduxFTextField}
+                />
+                <Field label='Confirm Password' type='password'
+                  fullWidth margin='normal' className={classes.textField}
+                  name="confirmPassword"
+                  component={reduxFTextField}
+                />
+                <Field
+                  component={reduxFCheckbox}
+                  label='Tôi đã đọc chính sách & OK'
+                  name="isChk"
+                />
+                <Button
+                  disabled={invalid || submitting}
+                  variant='contained' color='primary' fullWidth type='submit' >
                   Đăng kí
                 </Button>
                 <div>
@@ -44,6 +80,26 @@ class DangkiPage extends Component {
 
 DangkiPage.propTypes = {
   classes: PropTypes.object,
+  invalid: PropTypes.bool,
+  submitting: PropTypes.bool,
+  handleSubmit: PropTypes.func,
+  authActionCreators: PropTypes.shape({
+    dangki: PropTypes.func,
+  }),
 }
+const withReduxForm = reduxForm({
+  form: FORM_DANG_KI,
+  validate,
+})
+const mapDispatchToProps = dispatch => ({
+  authActionCreators: bindActionCreators(authAction, dispatch)
+})
 
-export default withStyles(dkPageStyles)(DangkiPage)
+export default compose(
+  withStyles(dkPageStyles),
+  connect(
+    null,
+    mapDispatchToProps
+  ),
+  withReduxForm,
+)(DangkiPage) 

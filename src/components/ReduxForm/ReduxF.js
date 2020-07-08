@@ -1,5 +1,5 @@
 import React from 'react'
-import { TextField, FormControl, RadioGroup, FormControlLabel, Radio, FormHelperText, InputLabel, Select } from '@material-ui/core'
+import { TextField, FormControl, RadioGroup, FormControlLabel, Radio, FormHelperText, InputLabel, Select, Checkbox } from '@material-ui/core'
 import PropTypes from 'prop-types'
 
 export const reduxFTextField = ({
@@ -72,4 +72,17 @@ reduxFSelectField.propTypes = {
     input: PropTypes.object,
     meta: PropTypes.object,
     children: PropTypes.array,
+}
+
+export const reduxFCheckbox = ({ input, label }) => (
+    <div>
+        <FormControlLabel
+            control={<Checkbox checked={!!input.value} onChange={input.onChange} />}
+            label={label}
+        />
+    </div>
+)
+reduxFCheckbox.propTypes = {
+    label: PropTypes.string,
+    input: PropTypes.object,
 }

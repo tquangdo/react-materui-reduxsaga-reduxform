@@ -25,8 +25,8 @@ export const STATUS_CODE = {
 export const TOKEN = 'TOKEN'
 export const DELAY_MS = 1000
 export const REDIRECT_AFTER_DANGKI = '/reduxsaga-materui-reduxform';
-export const REDIRECT_AFTER_DANGNHAP_ADMIN = '/admin';
-export const REDIRECT_AFTER_DANGNHAP_USER = '/home';
+export const REDIRECT_AFTER_DANGNHAP_ADMIN = REDIRECT_AFTER_DANGKI + '/admin';
+export const REDIRECT_AFTER_DANGNHAP_USER = REDIRECT_AFTER_DANGKI + '/home';
 
 export const ADMIN_ROUTES = [
     {
@@ -36,7 +36,7 @@ export const ADMIN_ROUTES = [
         component: QuanTriPage,
     },
     {
-        path: '/admin/task-board',
+        path: REDIRECT_AFTER_DANGKI + '/admin/task-board',
         name: 'Quản lí task',
         component: TaskBoard,
     },
@@ -50,12 +50,12 @@ export const USER_ROUTES = [
         component: DangnhapPage,
     },
     {
-        path: '/signup',
+        path: REDIRECT_AFTER_DANGKI + '/signup',
         name: 'Đăng kí',
         component: DangkiPage,
     },
     {
-        path: '/home',
+        path: REDIRECT_AFTER_DANGNHAP_USER,
         name: 'Trang chủ',
         component: HomePage,
     },

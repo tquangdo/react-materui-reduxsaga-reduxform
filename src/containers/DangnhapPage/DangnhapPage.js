@@ -10,6 +10,7 @@ import * as authAction from '../../redux/actions/AuthAction'
 import { LOGIN } from '../../redux/constants/ConfigConst'
 import validate from '../TaskForm/Validate'
 import dnPageStyles from './DangnhapPageStyles'
+import { REDIRECT_AFTER_DANGKI } from '../../constants/CommonConstants'
 
 class DangnhapPage extends Component {
   hamSubmitForm = data => {
@@ -47,7 +48,7 @@ class DangnhapPage extends Component {
                   Đăng nhập
                 </Button>
                 <div>
-                  <Link to='/signup' >
+                  <Link to={REDIRECT_AFTER_DANGKI + '/signup'} >
                     <Button>Đăng kí tài khoản</Button>
                   </Link>
                 </div>
@@ -55,7 +56,7 @@ class DangnhapPage extends Component {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </div >
     )
   }
 }

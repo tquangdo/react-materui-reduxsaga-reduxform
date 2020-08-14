@@ -1,15 +1,6 @@
 import * as actTypes from '../constants/ActionTypes'
 import { STATUS } from '../../constants/CommonConstants'
 
-// export const fetchListTaskREQ = () => {
-//     return dispatch => {
-//         dispatch(resetListTask())
-//         taskAPI
-//             .getList()
-//             .then(res => { dispatch(fetchListOK(res.data)) })
-//             .catch(err => { dispatch(fetchListNG(err)) })
-//     }
-// }
 export const resetListTask = (params = {}) => {
     return {
         type: actTypes.RESET_LIST_TASK,

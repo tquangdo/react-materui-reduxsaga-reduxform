@@ -1,8 +1,5 @@
-// run script: npm run eslinting
-// need install: npm -g i eslint-cli
 module.exports = {
   parser: "babel-eslint",
-  // https://eslint.org/> User guide> Configuring ESLint
   parserOptions: {
     ecmaVersion: 6,
     sourceType: "module",
@@ -10,7 +7,6 @@ module.exports = {
       jsx: true,
     },
   },
-  // npm install --save-dev eslint-config-airbnb
   // extends: ["airbnb"],
   rules: {
     semi: 0,

@@ -30,9 +30,9 @@ class DangnhapPage extends Component {
             <CardContent>
               <form onSubmit={handleSubmit(this.hamSubmitForm)}>
                 <div>
-                  <Typography variant='caption'>Đăng nhập</Typography>
+                  <Typography variant='caption'>Đăng nhập(Đang test nên acc nào cũng OK!)</Typography>
                 </div>
-                <Field label='Email'
+                <Field label='Email' placeholder='admin@gmail.com/admin'
                   fullWidth margin='normal' className={classes.textField}
                   name="email"
                   component={reduxFTextField}

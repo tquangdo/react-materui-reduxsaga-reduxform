@@ -1,6 +1,6 @@
 {
-  "homepage": "http://tquangdo.github.io/reduxsaga-materui-reduxform",
-  "name": "reduxsaga-materui-reduxform",
+  "homepage": "http://tquangdo.github.io/react-materui-reduxsaga-reduxform",
+  "name": "react-materui-reduxsaga-reduxform",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

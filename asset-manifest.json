@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.js": "/reduxsaga-materui-reduxform/static/js/main.745b5443.chunk.js",
-    "main.js.map": "/reduxsaga-materui-reduxform/static/js/main.745b5443.chunk.js.map",
-    "runtime-main.js": "/reduxsaga-materui-reduxform/static/js/runtime-main.be7d6419.js",
-    "runtime-main.js.map": "/reduxsaga-materui-reduxform/static/js/runtime-main.be7d6419.js.map",
-    "static/css/2.d34346ea.chunk.css": "/reduxsaga-materui-reduxform/static/css/2.d34346ea.chunk.css",
-    "static/js/2.5970697e.chunk.js": "/reduxsaga-materui-reduxform/static/js/2.5970697e.chunk.js",
-    "static/js/2.5970697e.chunk.js.map": "/reduxsaga-materui-reduxform/static/js/2.5970697e.chunk.js.map",
-    "index.html": "/reduxsaga-materui-reduxform/index.html",
-    "precache-manifest.b6ab030057acaf3a96f4f2db8cbb12af.js": "/reduxsaga-materui-reduxform/precache-manifest.b6ab030057acaf3a96f4f2db8cbb12af.js",
-    "service-worker.js": "/reduxsaga-materui-reduxform/service-worker.js",
-    "static/css/2.d34346ea.chunk.css.map": "/reduxsaga-materui-reduxform/static/css/2.d34346ea.chunk.css.map",
-    "static/js/2.5970697e.chunk.js.LICENSE.txt": "/reduxsaga-materui-reduxform/static/js/2.5970697e.chunk.js.LICENSE.txt",
-    "static/media/loading.gif": "/reduxsaga-materui-reduxform/static/media/loading.73abf012.gif"
+    "main.js": "/react-materui-reduxsaga-reduxform/static/js/main.dc2c7a3e.chunk.js",
+    "main.js.map": "/react-materui-reduxsaga-reduxform/static/js/main.dc2c7a3e.chunk.js.map",
+    "runtime-main.js": "/react-materui-reduxsaga-reduxform/static/js/runtime-main.c1b0aa2c.js",
+    "runtime-main.js.map": "/react-materui-reduxsaga-reduxform/static/js/runtime-main.c1b0aa2c.js.map",
+    "static/css/2.2bc212ea.chunk.css": "/react-materui-reduxsaga-reduxform/static/css/2.2bc212ea.chunk.css",
+    "static/js/2.6a510098.chunk.js": "/react-materui-reduxsaga-reduxform/static/js/2.6a510098.chunk.js",
+    "static/js/2.6a510098.chunk.js.map": "/react-materui-reduxsaga-reduxform/static/js/2.6a510098.chunk.js.map",
+    "index.html": "/react-materui-reduxsaga-reduxform/index.html",
+    "precache-manifest.5ce42afa209f32dcb8722df3859c1a97.js": "/react-materui-reduxsaga-reduxform/precache-manifest.5ce42afa209f32dcb8722df3859c1a97.js",
+    "service-worker.js": "/react-materui-reduxsaga-reduxform/service-worker.js",
+    "static/css/2.2bc212ea.chunk.css.map": "/react-materui-reduxsaga-reduxform/static/css/2.2bc212ea.chunk.css.map",
+    "static/js/2.6a510098.chunk.js.LICENSE.txt": "/react-materui-reduxsaga-reduxform/static/js/2.6a510098.chunk.js.LICENSE.txt",
+    "static/media/loading.gif": "/react-materui-reduxsaga-reduxform/static/media/loading.73abf012.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.be7d6419.js",
-    "static/css/2.d34346ea.chunk.css",
-    "static/js/2.5970697e.chunk.js",
-    "static/js/main.745b5443.chunk.js"
+    "static/js/runtime-main.c1b0aa2c.js",
+    "static/css/2.2bc212ea.chunk.css",
+    "static/js/2.6a510098.chunk.js",
+    "static/js/main.dc2c7a3e.chunk.js"
   ]
 }

@@ -10,7 +10,7 @@
 ![API](screenshot/API.png)
 1. `congviecs`
 2. `tokens`: data of login users (same with `member_signup`)
-=> NOT done login process yet, all login accs will be inserted into here
+=> still NOT done login process yet, all login accs will be inserted into here
 ![tokens](screenshot/tokens.png)
 3. `member_signup`
 

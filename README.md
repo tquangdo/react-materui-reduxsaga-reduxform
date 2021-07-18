@@ -9,8 +9,9 @@
 - `https://5edc676811cb1d001665ce13.mockapi.io/dotq/`
 ![API](screenshot/API.png)
 1. `congviecs`
-2. `tokens`: data of login users (same with `member_signup`)
-=> still NOT done login process yet, all login accs will be inserted into here
+2. ~~`tokens`: data of login users (same with `member_signup`)~~
+- ~~still NOT done login process yet, all login accs will be inserted into here~~
+### **2021/07/18 DELETE!!!**
 ![tokens](screenshot/tokens.png)
 3. `member_signup`
 
